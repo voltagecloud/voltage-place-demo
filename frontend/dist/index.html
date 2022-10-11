@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"
+		/>
+		<title>Voltage Place</title>
+		<script type="module" crossorigin src="/assets/index.c68966de.js"></script>
+		<link rel="stylesheet" href="/assets/index.aa90d51d.css">
+	</head>
+	<body>
+		<nav class="loading">Loading...</nav>
+		<template id="drawing"> Draw Pretty Things! </template>
+		<template id="buying">
+			<button class="buy">Buy <span>X</span> pixels</button>
+			<span>or</span>
+			<button class="cancel button-outline">Reset</button>
+		</template>
+
+		<main>
+			<canvas hidden></canvas>
+			<span class="brush"></span>
+		</main>
+
+		<aside hidden>
+			<label>
+				Color:
+				<input name="color" type="color" />
+			</label>
+			<label>
+				Stroke:
+				<input name="width" type="range" min="1" max="50" value="10" />
+			</label>
+			<label>
+				Scale:
+				<input name="scale" type="range" min="1" max="10" value="1" />
+			</label>
+		</aside>
+
+		<dialog></dialog>
+		<template id="loading">
+			<h6>Loading...</h6>
+			<small></small>
+		</template>
+		<template id="negotiating">
+			<p>PurchaseId: <code>x</code></p>
+			<h3>What's a fair price for these pixels?</h3>
+			<p>
+				<label>
+					<input type="number" name="price" />
+					<span>sat</span>
+				</label>
+			</p>
+			<form method="dialog">
+				<button class="bolt11" type="button">Generate Bolt11</button>
+				<button class="button-outline">Cancel</button>
+			</form>
+		</template>
+		<template id="paying">
+			<h3>Lighting invoice:</h3>
+			<p>
+				<a href="#">
+					<canvas></canvas>
+				</a>
+			</p>
+			<pre></pre>
+			<p class="poll">
+				Awaiting payment...
+			</p>
+			<form method="dialog">
+				<button class="button-outline">Cancel</button>
+			</form>
+		</template>
+
+		
+	</body>
+</html>
