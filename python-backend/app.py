@@ -177,18 +177,18 @@ def check():
 
     is_paid = payment.paid
     
-    # # Check paid status from lnbits
-    # lnbits_invoice_status = requests.get(
-    #     f"{LNBITS_URL}/api/v1/payments/{payment_hash}", headers=lnbits_header
-    # ).json()
+    # Check paid status from lnbits
+    lnbits_invoice_status = requests.get(
+        f"{LNBITS_URL}/api/v1/payments/{payment_hash}", headers=lnbits_header
+    ).json()
     
-    # is_paid_now = lnbits_invoice_status["paid"]
+    is_paid_now = lnbits_invoice_status["paid"]
 
-    # # Write to database if it is paid, and db says it isnt
-    # if is_paid_now and not is_paid:
-    #     mark_invoice_paid_and_draw(payment_hash)
+    # Write to database if it is paid, and db says it isnt
+    if is_paid_now and not is_paid:
+        mark_invoice_paid_and_draw(payment_hash)
 
-    return json.dumps({"paid": is_paid})
+    return json.dumps({"paid": is_paid_now})
 
 
 @app.route("/grid", methods=["GET"])
