@@ -5,3 +5,4 @@ Pillow
 webcolors
 black
 flask-cors
+gunicorn

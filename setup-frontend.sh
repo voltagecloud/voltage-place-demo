@@ -1,4 +1,5 @@
 #!/bin/bash
-cd frontend
+echo "Running Setup Frontend"
+# cd frontend
 yarn install
 yarn run build

@@ -14,3 +14,4 @@ frontend/dist
 frontend/package-lock.json
 env/
 python-backend/images/*
+python-backend/generated

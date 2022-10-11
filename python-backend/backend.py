@@ -300,3 +300,5 @@ def generate_image():
     outfile = BytesIO()
     im.save(outfile, format="PNG")
     return outfile
+
+# if __name__ == "__main__":

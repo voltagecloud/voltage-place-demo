@@ -1,11 +1,11 @@
 #!/bin/bash
+echo "Running Setup Backend"
 
+mkdir -p images
+cp $APPDIR/frontend/public/tabconf.png $APPDIR/python-backend/images/latest.png
 
-mkdir -p python-backend/images
-cp frontend/public/tabconf.png python-backend/images/latest.png
+# python3 -m venv $HOME/voltage-place-demo/env
+# . $HOME/voltage-place-demo/env/bin/activate
 
-python3 -m venv $HOME/voltage-place-demo/env
-. $HOME/voltage-place-demo/env/bin/activate
-
-cd python-backend
+# cd python-backend
 pip install -r requirements.txt
