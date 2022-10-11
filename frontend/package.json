@@ -1,0 +1,26 @@
+{
+	"name": "voltage-place-frontend",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "vite dev",
+		"build": "tsc && vite build",
+		"preview": "vite preview",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"rgb-hex": "^4.0.0",
+		"qrcanvas": "^3.1.2",
+		"vite": "^3.1.4",
+		"prettier": "^2.7.1",
+		"eslint": "^8.24.0",
+		"typescript": "^4.8.4",
+		"@typescript-eslint/eslint-plugin": "^5.27.0",
+		"@typescript-eslint/parser": "^5.27.0",
+		"eslint-config-prettier": "^8.3.0"
+	},
+	"license": "UNLICENSED"
+}

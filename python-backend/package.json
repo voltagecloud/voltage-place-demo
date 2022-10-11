@@ -1,0 +1,8 @@
+{
+  "name": "voltage-place-backend",
+  "private": true,
+  "version": "1.0.0",
+  "prisma": {
+    "seed": "bash seed.sh"
+  }
+}

@@ -1,0 +1,23 @@
+dialog {
+	top: 0;
+	bottom: 0;
+	border-radius: 1rem;
+	animation: zoomInDown 1s;
+}
+
+dialog::backdrop {
+	backdrop-filter: blur(10px);
+}
+
+dialog.loading h6 {
+	animation: pulse 1s infinite;
+	margin: 2rem;
+}
+
+dialog.paying pre {
+	font-size: x-small;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	max-width: 300px;
+	padding: 1rem;
+}

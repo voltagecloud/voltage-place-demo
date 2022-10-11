@@ -1,0 +1,7 @@
+flask
+prisma<0.7
+requests
+Pillow
+webcolors
+black
+flask-cors
