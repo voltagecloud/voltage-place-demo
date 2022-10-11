@@ -177,18 +177,18 @@ def check():
 
     is_paid = payment.paid
     
-    # Check paid status from lnbits
-    lnbits_invoice_status = requests.get(
-        f"{LNBITS_URL}/api/v1/payments/{payment_hash}", headers=lnbits_header
-    ).json()
+    # # Check paid status from lnbits
+    # lnbits_invoice_status = requests.get(
+    #     f"{LNBITS_URL}/api/v1/payments/{payment_hash}", headers=lnbits_header
+    # ).json()
     
-    is_paid_now = lnbits_invoice_status["paid"]
+    # is_paid_now = lnbits_invoice_status["paid"]
 
-    # Write to database if it is paid, and db says it isnt
-    if is_paid_now and not is_paid:
-        mark_invoice_paid_and_draw(payment_hash)
+    # # Write to database if it is paid, and db says it isnt
+    # if is_paid_now and not is_paid:
+    #     mark_invoice_paid_and_draw(payment_hash)
 
-    return json.dumps({"paid": is_paid_now})
+    return json.dumps({"paid": is_paid})
 
 
 @app.route("/grid", methods=["GET"])
@@ -244,17 +244,14 @@ def mark_invoice_paid_and_draw(payment_hash):
         )
         if payment is None:
             return "unknown", 404
-        
-        db.payment.update(
-            data={"paid": True},
-            where={"hash": payment.hash}
-        )
-        
+
         # Mark purchase as completed
         purchase_id = payment.purchaseId
         purchase = db.purchase.find_unique(
             where={"id": purchase_id},
-            include={"drawings": True}
+      	    include={
+      	    	"drawings": {"include": {"pixels": True}},
+      	    }
         )
 
         db.purchase.update(
@@ -262,30 +259,27 @@ def mark_invoice_paid_and_draw(payment_hash):
             where={"id": purchase_id}
         )
 
-        drawings = [ draw.id for draw in  purchase.drawings  ]
+        drawings = purchase.drawings
 
         with db.batch_() as batcher:
-            for draw_id in drawings:
-                drawing = db.draw.find_unique(
-                    where={"id": draw_id},
-                    include={"pixels": True}
-                )
-                print(drawing)
+            for drawing in drawings:
+                new_color = drawing.color
 
-                for draw_pix in drawing:
+                for pix in drawing.pixels:
                     new_color = drawing.color
 
                     # Draw pixels on board
-                    pixels = drawing.pixels
-                    print(purchase)
+                    batcher.pixel.update(
+                        data={"color": new_color},
+                        where={"id": pix.id}
+                    )
 
-                    for pix in pixels:
-                        print(pix.id)
-                        print(pix.color)
-                        batcher.pixel.update(
-                            data={"color": new_color},
-                            where={"id": pix.id}
-                        )
+        # Finally mark payment as paid
+        # which will cause the page to reload
+        db.payment.update(
+            data={"paid": True},
+            where={"hash": payment.hash}
+        )
         generate_image()
 
 def generate_image():
