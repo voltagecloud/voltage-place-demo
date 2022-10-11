@@ -1,7 +1,6 @@
 .DS_Store
 node_modules
-/frontend/dist
-/frontend/.env.local
+frontend/.env.local
 yarn-error.log
 python-backend/dev.db*
 python-backend/__pycache__
@@ -10,8 +9,6 @@ __pycache__
 venv/
 python-backend/__pycache__/*
 python-backend/templates/*
-frontend/dist
-frontend/package-lock.json
 env/
 python-backend/images/*
 python-backend/generated

@@ -3,16 +3,6 @@
 https://68e894d726.d.voltageapp.io/tipjar/1
 
 
-## Frontend Setup
-
-## Build Frontend Static Files
-```bash
-cd frontend
-yarn install
-yarn run build
-```
-
-
 ## Python Backend
 
 ```bash
