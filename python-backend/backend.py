@@ -67,14 +67,15 @@ def purchase():
 
     # Create Multiple Draw Objects
     with Prisma() as db:
-        for color_order in draw_requests:
-            pixel_ids = [{"id": i} for i in color_order["pixels"]]
-            num_pixels += len(pixel_ids)
-            draw = db.draw.create(
-                data={"color": color_order["color"], "pixels": {"connect": pixel_ids}},
-                include={"pixels": True}
-            )
-            draw_ids.append({"id": draw.id})
+        with db.batch_() as batcher:
+            for color_order in draw_requests:
+                pixel_ids = [{"id": i} for i in color_order["pixels"]]
+                num_pixels += len(pixel_ids)
+                draw = db.draw.create(
+                    data={"color": color_order["color"], "pixels": {"connect": pixel_ids}},
+                    include={"pixels": True}
+                )
+                draw_ids.append({"id": draw.id})
 
     print(num_pixels)
     # Create Purchase Object
@@ -123,7 +124,10 @@ def create_invoice():
         )
 
     pixels_in_drawing = purchase.numPixels
-    if amount < pixels_in_drawing:
+    pixels_in_drawing = 10
+
+    # if amount < pixels_in_drawing:
+    if amount < 10:
         return f"must pay {pixels_in_drawing} or more to continue", 400
 
     # Create a lightning invoice

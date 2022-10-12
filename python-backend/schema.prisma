@@ -1,23 +1,14 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-//generator client {
-//  provider = "prisma-client-js"
-//}
-
 generator client {
   provider  = "prisma-client-py"
   interface = "sync"
 }
 
-// generator client_async {
-//   provider  = "prisma-client-py"
-//   interface = "asyncio"
-// }
-
 datasource db {
   provider = "sqlite"
-  url      = "file:dev.db"
+  url      = "file:/data/dev.db"
 }
 
 model Pixel {
@@ -37,7 +28,6 @@ model Draw {
 model Purchase {
   id        String    @id @default(uuid())
   drawings  Draw[]
-  // pixels    Pixel[]
   numPixels Int
   complete  Boolean?
   createdAt DateTime  @default(now())

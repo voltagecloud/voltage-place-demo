@@ -14,6 +14,9 @@ def main() -> None:
     index = 0
     count = len(colors_hex)
     with Prisma() as db:
+        if db.pixel.count() != 0:
+            print("The DB has already been seeded!")
+            return
         # with db.batch_() as batcher:
         batcher = db.batch_()
         for i in colors_hex:

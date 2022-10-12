@@ -1,8 +1,8 @@
 #!/bin/bash
 echo "Running Setup Backend"
 
-mkdir -p images
-cp $APPDIR/frontend/public/tabconf.png $APPDIR/python-backend/images/latest.png
+# mkdir -p images
+# cp $APPDIR/frontend/public/tabconf.png $APPDIR/python-backend/images/latest.png
 
 # python3 -m venv $HOME/voltage-place-demo/env
 # . $HOME/voltage-place-demo/env/bin/activate
