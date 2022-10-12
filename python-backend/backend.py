@@ -131,22 +131,8 @@ def create_invoice():
         return f"must pay {pixels_in_drawing} or more to continue", 400
 
     # Create a lightning invoice
-    invoice_details = {
-        "out": False,
-        "amount": amount,
-        "memo": purchase_id,
-        "unit": "sat",
-        "webhook": f"{EXTERNAL_WEBHOOK_URL}/webhook"
-    }
-    lnbits_invoice = requests.post(
-        f"{LNBITS_URL}/api/v1/payments", headers=lnbits_header, json=invoice_details
-    ).json()
-    print(lnbits_invoice)
-    payment_hash = lnbits_invoice["payment_hash"]
-    response = {
-        "hash": payment_hash,
-        "request": lnbits_invoice["payment_request"]
-    }
+    # TODO 1
+    return "unimplemented", 400
 
     # Create Payment Object and Link payment object to purchase object
     with Prisma() as db:
@@ -182,11 +168,8 @@ def check():
     is_paid = payment.paid
     
     # Check paid status from lnbits
-    lnbits_invoice_status = requests.get(
-        f"{LNBITS_URL}/api/v1/payments/{payment_hash}", headers=lnbits_header
-    ).json()
-    
-    is_paid_now = lnbits_invoice_status["paid"]
+    # TODO 2
+    return "unimplemented", 400
 
     # Write to database if it is paid, and db says it isnt
     if is_paid_now and not is_paid:
