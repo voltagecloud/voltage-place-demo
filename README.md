@@ -1,16 +1,11 @@
 # voltage-place
 
-https://68e894d726.d.voltageapp.io/tipjar/1
-
 
 ## Frontend Setup
 
-## Build Frontend Static Files
-```bash
-cd frontend
-yarn install
-yarn run build
-```
+It should already be built and ready.
+Ask Adrien if there are questions.
+https://68e894d726.d.voltageapp.io/tipjar/1
 
 
 ## Python Backend
