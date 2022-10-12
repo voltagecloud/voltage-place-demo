@@ -24,7 +24,7 @@ COPY python-backend /app/python-backend
 COPY *.sh /app/
 RUN ls /app
 WORKDIR /app/frontend
-RUN /app/setup-frontend.sh 
+# RUN /app/setup-frontend.sh 
 
 
 ENV VIRTUAL_ENV=/opt/venv
@@ -34,6 +34,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 WORKDIR /app/python-backend
 RUN /app/setup-backend.sh 
 RUN /app/setup-db.sh
+RUN ln -s /app/python-backend/images/ /data/images
 ENV EXTERNAL_WEBHOOK_URL addme
 ENV LNBITS_URL addme
 ENV LNBITS_API_KEY addme
