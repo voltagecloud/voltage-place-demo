@@ -3,9 +3,9 @@
 ## Setup
 
 Add these three secrets:
-EXTERNAL_WEBHOOK_URL (https://voltage.place)
-LNBITS_API_KEY (abc123...)
-LNBITS_URL (https://851ac819d2.d.voltageapp.io)
+EXTERNAL_WEBHOOK_URL (leave blank for now)
+LNBITS_API_KEY (lnbits invoice key: abc123...)
+LNBITS_URL (https://7578059e5c.d.voltageapp.io)
 
 in Shell:
 cd python-backend
@@ -13,6 +13,9 @@ cd python-backend
 ./setup-db.sh
 
 Now click Run! (which runs start.sh)
+
+Now grab the url of the running site and add it as the EXTERNAL_WEBOOK_URL
+
 
 
 
@@ -23,6 +26,13 @@ Now click Run! (which runs start.sh)
 
 ## Cheating (LOOK AWAY!)
 
+```
+LNBITS_API_KEY = os.getenv("LNBITS_API_KEY")
+
+lnbits_header = {
+    "X-Api-Key": LNBITS_API_KEY
+}
+```
     
 TODO 1
 ```python
