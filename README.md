@@ -27,6 +27,9 @@ Now grab the url of the running site and add it as the EXTERNAL_WEBOOK_URL
 ## Cheating (LOOK AWAY!)
 
 ```
+import os 
+import request
+
 LNBITS_API_KEY = os.getenv("LNBITS_API_KEY")
 
 lnbits_header = {
