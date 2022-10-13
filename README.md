@@ -1,30 +1,16 @@
 # voltage-place
 
+## Setup
 
-## Frontend Setup
+Add these three secrets:
+EXTERNAL_WEBHOOK_URL (https://voltage.place)
+LNBITS_API_KEY (abc123...)
+LNBITS_URL (https://851ac819d2.d.voltageapp.io)
 
-It should already be built and ready.
-Ask Adrien if there are questions.
-https://68e894d726.d.voltageapp.io/tipjar/1
-
-
-## Python Backend
-
-```bash
+in Shell:
 cd python-backend
-# Create/Setup Python Virtual Environment
-python -m venv env
-. env/bin/activate
-pip install -r requirements.txt
+./setup-backend.sh
+./setup-db.sh
 
-
-# Sqlite DB Setup
-prisma py fetch
-prisma db push
-prisma db seed
-
-
-# Start the API Server
-flask run -h 0.0.0.0
-```
+Now click Run! (which runs start.sh)
 
